@@ -15,13 +15,21 @@ function contagemPorParagrafos(texto) {
   console.log(contagem);
 }
 
+function limparPalavras(texto) {
+  const palavra = texto.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+  return palavra;
+}
+
 // Função para capturar cada palavra e a quantidade que tem nela em cada parte do texto
 function verificarPalavrasDuplicadas(texto) {
   const listaPalavras = texto.split(" ");
   const resultado = {};
   // Agora vamos iterar os objetos que vão aparecer
   listaPalavras.forEach((palavra) => {
-    resultado[palavra] = (resultado[palavra] || 0) + 1;
+    if (palavra.length >= 3) {
+      palavraLimpa = limparPalavras(palavra);
+      resultado[palavraLimpa] = (resultado[palavraLimpa] || 0) + 1;
+    }
   });
   return resultado;
 }
